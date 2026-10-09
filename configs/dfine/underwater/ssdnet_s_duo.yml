@@ -1,0 +1,45 @@
+__include__: [./dfine_hgnetv2_s_duo.yml]
+
+model: SSDNet
+criterion: SSDNetCriterion
+output_dir: ./output/ssdnet_s_duo
+
+SSDNet:
+  backbone: HGNetv2
+  encoder: HybridEncoder
+  decoder: DFINETransformer
+  positive_embeddings_path: Positive_Text_Embeddings_path
+  negative_embeddings_path: Negative_Text_Embeddings_path
+  text_topk: 3
+  semantic_strength: 0.3
+
+SSDNetCriterion:
+  matcher:
+    type: HungarianMatcher
+    weight_dict: {cost_class: 2, cost_bbox: 5, cost_giou: 2}
+    alpha: 0.25
+    gamma: 2.0
+  weight_dict: {loss_vfl: 1, loss_bbox: 5, loss_giou: 2, loss_fgl: 0.15, loss_ddf: 1.5}
+  losses: [vfl, boxes, local]
+  alpha: 0.75
+  gamma: 2.0
+  reg_max: 32
+  spatial_loss_weight: 0.1
+
+HGNetv2:
+  pretrained: False
+  local_model_dir: weight/hgnetv2/
+
+train_dataloader:
+  dataset:
+    ann_file: /home/user03/lbl/Dataset/DUO/annotations/instances_train.json
+val_dataloader:
+  dataset:
+    ann_file: /home/user03/lbl/Dataset/DUO/annotations/instances_test.json
+
+optimizer:
+  lr: 0.0001
+  params:
+    - {params: '^(?=.*backbone)(?!.*norm|bn).*$', lr: 0.0002}
+    - {params: '^(?=.*backbone)(?=.*norm|bn).*$', lr: 0.0002, weight_decay: 0.}
+    - {params: '^(?=.*(?:encoder|decoder|spatial_refiners|semantic_calibration))(?=.*(?:norm|bn|bias)).*$', weight_decay: 0.}

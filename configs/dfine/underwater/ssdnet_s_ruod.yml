@@ -1,0 +1,16 @@
+__include__: [./dfine_hgnetv2_s_ruod.yml, ./ssdnet_s_duo.yml]
+
+num_classes: 10
+output_dir: ./output/ssdnet_s_ruod
+
+train_dataloader:
+  dataset:
+    img_folder: /home/user03/lbl/Dataset/RUOD/train
+    ann_file: /home/user03/lbl/Dataset/RUOD/annotations/instances_train.json
+val_dataloader:
+  dataset:
+    img_folder: /home/user03/lbl/Dataset/RUOD/test
+    ann_file: /home/user03/lbl/Dataset/RUOD/annotations/instances_test.json
+
+HGNetv2:
+  pretrained: False

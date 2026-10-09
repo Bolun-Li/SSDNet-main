@@ -1,0 +1,15 @@
+__include__: [./dfine_hgnetv2_s_utdac2020.yml, ./ssdnet_s_duo.yml]
+
+output_dir: ./output/ssdnet_s_utdac2020
+
+train_dataloader:
+  dataset:
+    img_folder: /home/user03/lbl/Dataset/UTDAC2020/train2017
+    ann_file: /home/user03/lbl/Dataset/UTDAC2020/annotations/instances_train2017.json
+val_dataloader:
+  dataset:
+    img_folder: /home/user03/lbl/Dataset/UTDAC2020/val2017
+    ann_file: /home/user03/lbl/Dataset/UTDAC2020/annotations/instances_val2017.json
+
+HGNetv2:
+  pretrained: False
