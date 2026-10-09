@@ -8,8 +8,8 @@ SSDNet:
   backbone: HGNetv2
   encoder: HybridEncoder
   decoder: DFINETransformer
-  positive_embeddings_path: Positive_Text_Embeddings_path
-  negative_embeddings_path: Negative_Text_Embeddings_path
+  positive_embeddings_path: embeddings/duo/positive.pt
+  negative_embeddings_path: embeddings/duo/negative.pt
   text_topk: 3
   semantic_strength: 0.3
 

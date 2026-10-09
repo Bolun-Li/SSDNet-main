@@ -7,3 +7,4 @@ scipy
 calflops
 transformers
 loguru
+open_clip_torch==2.32.0

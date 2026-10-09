@@ -3,6 +3,10 @@ __include__: [./dfine_hgnetv2_s_ruod.yml, ./ssdnet_s_duo.yml]
 num_classes: 10
 output_dir: ./output/ssdnet_s_ruod
 
+SSDNet:
+  positive_embeddings_path: embeddings/ruod/positive.pt
+  negative_embeddings_path: embeddings/ruod/negative.pt
+
 train_dataloader:
   dataset:
     img_folder: /home/user03/lbl/Dataset/RUOD/train
